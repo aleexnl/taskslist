@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
  */
 Route::get('/', function () {
     //
-    return "Benvingudes!";
+    return view('tasks');
 });
 
 /**
@@ -35,4 +35,3 @@ Route::post('/task', function (Request $request) {
 Route::delete('/task/{task}', function (Task $task) {
     //
 });
-
