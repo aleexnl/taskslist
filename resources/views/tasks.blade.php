@@ -1,76 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <!-- Bootstrap Boilerplate... -->
-
-    <div class="panel-body">
-        <!-- Display Validation Errors -->
+<h1>Tasks</h1>
+<hr>
         @include('common.errors')
-
-        <!-- New Task Form -->
+        <h2>Add a new Task</h2>
         <form action="/task" method="POST" class="form-horizontal">
             {{ csrf_field() }}
-
-            <!-- Task Name -->
             <div class="form-group">
                 <label for="task" class="col-sm-3 control-label">Task</label>
-
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control">
+                    <input type="text" name="name" id="task-name" class="form-control" placeholder="Some task you have to do...">
                 </div>
             </div>
-
-            <!-- Add Task Button -->
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> Add Task
-                    </button>
+                    <button type="submit" class="btn btn-outline-primary">Add Task</button>
                 </div>
             </div>
         </form>
+<hr>
+<div class="panel panel-default mt-4">
+    <div class="panel-heading">
+        <h2>Current Tasks</h2>
     </div>
-
-    <!-- TODO: Current Tasks -->
+    <div class="panel-body">
+        <table class="table table-striped task-table">
+            <thead class="table-light">
+                <th colspan="2">Task</th>
+            </thead>
+            <tbody>
     @if (count($tasks) > 0)
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Current Tasks
-            </div>
-
-            <div class="panel-body">
-                <table class="table table-striped task-table">
-
-                    <!-- Table Headings -->
-                    <thead>
-                        <th>Task</th>
-                        <th>&nbsp;</th>
-                    </thead>
-
-                    <!-- Table Body -->
-                    <tbody>
                         @foreach ($tasks as $task)
-                        <tr>
+                        <tr class="align-middle">
                             <!-- Task Name -->
-                            <td class="table-text">
+                            <td>
                                 <div>{{ $task->name }}</div>
                             </td>
                         
                             <!-- Delete Button -->
                             <td>
-                                <form action="/task/{{ $task->id }}" method="POST">
+                                <form action="/task/{{ $task->id }}" method="POST" class="d-flex justify-end">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                        
-                                    <button>Delete Task</button>
+                                   <button class="btn btn-outline-danger mx-auto">Delete Task</button>
                                 </form>
                             </td>
                         </tr>
                         @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
     @endif
+</tbody>
+</table>
+</div>
+</div>
 @endsection
