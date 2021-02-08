@@ -33,12 +33,9 @@
                 @if (count($tasks) > 0)
                     @foreach ($tasks as $task)
                     <tr class="align-middle">
-                        <!-- Task Name -->
                         <td>
                             <div>{{ $task->name }}</div>
                         </td>
-                    
-                        <!-- Delete Button -->
                         <td>
                             <form action="/task/{{ $task->id }}" method="POST" class="d-flex justify-end">
                                 {{ csrf_field() }}
