@@ -15,9 +15,9 @@
         <div class="form-group col-md-6">
             <label for="category">Category</label>
             <select class="form-select" name="category" id="category">
-                <option value="asd">asd</option>
-                <option value="asd">asd</option>
-                <option value="asd">asd</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
             </select>
         </div>
     </div>
