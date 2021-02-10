@@ -19,7 +19,6 @@
         </div>
     </div>
 </form>
-<hr>
 <div class="panel panel-default mt-4">
     <div class="panel-heading">
         <h2>Current Tasks</h2>
