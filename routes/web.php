@@ -21,9 +21,12 @@ use Illuminate\Http\Request;
  */
 Route::get('/', function () {
     $tasks = Task::orderBy('created_at', 'asc')->get();
+    $categories = Category::orderBy('created_at', 'asc')->get();
+
 
     return view('tasks', [
-        'tasks' => $tasks
+        'tasks' => $tasks,
+        'categories' => $categories
     ]);
 });
 
