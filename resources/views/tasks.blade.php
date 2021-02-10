@@ -5,12 +5,20 @@
 <hr>
 @include('common.errors')
 <h2>Add a new Task</h2>
-<form action="/task" method="POST" class="form-horizontal">
+<form action="/task" method="POST">
     {{ csrf_field() }}
-    <div class="form-group">
-        <label for="task" class="col-sm-3 control-label">Task</label>
-        <div class="col-sm-6">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="task-name">Task</label>
             <input type="text" name="name" id="task-name" class="form-control" placeholder="Some task you have to do...">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="category">Category</label>
+            <select class="form-select" name="category" id="category">
+                <option value="asd">asd</option>
+                <option value="asd">asd</option>
+                <option value="asd">asd</option>
+            </select>
         </div>
     </div>
     <div class="form-group mt-2">
