@@ -34,7 +34,9 @@
     <div class="panel-body">
         <table class="table table-striped task-table">
             <thead class="table-light">
-                <th colspan="2">Task</th>
+                <th>Task</th>
+                <th>Category</th>
+                <th>Actions</th>
             </thead>
             <tbody>
                 @if (count($tasks) > 0)
@@ -44,10 +46,13 @@
                             <div>{{ $task->name }}</div>
                         </td>
                         <td>
-                            <form action="/task/{{ $task->id }}" method="POST" class="d-flex justify-end">
+                            <div>{{ $task->category->name }}</div>
+                        </td>
+                        <td>
+                            <form action="/task/{{ $task->id }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button class="btn btn-outline-danger ms-auto">Delete Task</button>
+                                <button class="btn btn-outline-danger">Delete Task</button>
                             </form>
                         </td>
                     </tr>
