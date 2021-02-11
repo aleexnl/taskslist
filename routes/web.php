@@ -20,6 +20,15 @@ use Illuminate\Http\Request;
  * Show Task Dashboard
  */
 Route::get('/', function () {
+    return view('dashboard');
+});
+
+
+
+/**
+ * Show Task Dashboard
+ */
+Route::get('/tasks', function () {
     $tasks = Task::orderBy('created_at', 'asc')->get();
     $categories = Category::orderBy('created_at', 'asc')->get();
 
@@ -44,6 +53,7 @@ Route::get('/categories', function () {
 Route::post('/task', function (Request $request) {
     $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
+        'category' => 'required',
     ]);
 
     if ($validator->fails()) {
@@ -57,7 +67,7 @@ Route::post('/task', function (Request $request) {
     $task->category_id = $request->category;
     $task->save();
 
-    return redirect('/');
+    return redirect('/tasks');
 });
 
 /**
@@ -69,7 +79,7 @@ Route::post('/category', function (Request $request) {
     ]);
 
     if ($validator->fails()) {
-        return redirect('/')
+        return redirect('/categories')
             ->withInput()
             ->withErrors($validator);
     }
@@ -87,7 +97,7 @@ Route::post('/category', function (Request $request) {
 Route::delete('/task/{id}', function ($id) {
     Task::findOrFail($id)->delete();
 
-    return redirect('/');
+    return redirect('/tasks');
 });
 
 /**
