@@ -26,6 +26,9 @@
                 <li class="nav-item">
                   <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="/categories">Categories</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link {{ Request::is('categories-and-tasks') ? 'active' : '' }}" href="/categories-and-tasks">Task by Category</a>
+                </li>
               </ul>
             </div>
           </div>

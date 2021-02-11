@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 
 /**
- * Show Task Dashboard
+ * Show Tasks
  */
 Route::get('/tasks', function () {
     $tasks = Task::orderBy('created_at', 'asc')->get();
@@ -39,10 +39,24 @@ Route::get('/tasks', function () {
     ]);
 });
 
+/**
+ * Show Categories
+ */
 Route::get('/categories', function () {
     $categories = Category::orderBy('created_at', 'asc')->get();
 
     return view('categories', [
+        'categories' => $categories
+    ]);
+});
+
+/**
+ * Show Tasks per Category
+ */
+Route::get('/categories-and-tasks', function () {
+    $categories = Category::all();
+
+    return view('category_tasks', [
         'categories' => $categories
     ]);
 });
