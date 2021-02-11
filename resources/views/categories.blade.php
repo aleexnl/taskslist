@@ -23,7 +23,8 @@
     <div class="panel-body">
         <table class="table table-striped task-table">
             <thead class="table-light">
-                <th colspan="2">Category</th>
+                <th>Category</th>
+                <th>Actions</th>
             </thead>
             <tbody>
                 @if (count($categories) > 0)
@@ -33,10 +34,10 @@
                             <div>{{ $category->name }}</div>
                         </td>
                         <td>
-                            <form action="/category/{{ $category->id }}" method="POST" class="d-flex justify-end">
+                            <form action="/category/{{ $category->id }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button class="btn btn-outline-danger ms-auto">Delete Category</button>
+                                <button class="btn btn-outline-danger">Delete Category</button>
                             </form>
                         </td>
                     </tr>
