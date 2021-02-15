@@ -13,7 +13,6 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'parent' => Category::all()->random()->id,
             'created_at' => now(),
             'updated_at' => now()
         ];
