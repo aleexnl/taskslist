@@ -118,6 +118,16 @@ Route::delete('/task/{id}', function ($id) {
  * Delete Category
  */
 Route::delete('/category/{id}', function ($id) {
+    $validator = Validator::make(['id' => $id], [
+        'id' => 'unique:tasks,category_id',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/categories')
+            ->withInput()
+            ->withErrors($validator);
+    }
+
     Category::findOrFail($id)->delete();
 
     return redirect('/categories');
